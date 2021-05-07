@@ -49,4 +49,4 @@ app.use("/api/tele", teleCounsellingRoutes)
 app.use("/api/neravu", neravuRoutes)
 
 // Listen to server
-app.listen(11000, () => console.log("Server Started"))
+app.listen(process.env.PORT || 11000, () => console.log("Server Started"))
