@@ -15,6 +15,9 @@ const plasmaRoutes = require("./routes/api/plasma")
 const remdesivirRoutes = require("./routes/api/remdesivir")
 const teleCounsellingRoutes = require("./routes/api/tele")
 
+// Form Routes
+const neravuRoutes = require("./routes/api/neravu")
+
 const app = express();
 
 // Body Parser Middleware
@@ -42,6 +45,8 @@ app.use("/api/oxygen", oxygenRoutes)
 app.use("/api/plasma", plasmaRoutes)
 app.use("/api/remdesivir", remdesivirRoutes)
 app.use("/api/tele", teleCounsellingRoutes)
+
+app.use("/api/neravu", neravuRoutes)
 
 // Listen to server
 app.listen(11000, () => console.log("Server Started"))
