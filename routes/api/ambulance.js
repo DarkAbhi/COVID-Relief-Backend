@@ -7,7 +7,7 @@ const AmbulanceServiceModel = require("../../models/AmbulanceServiceModel");
 
 // @routes GET api/ambulance
 // @desc GET all Ambulance Service
-router.get("/", async (req, res) => {
+router.get("/", async (_req, res) => {
   try {
     const ambulances = await AmbulanceServiceModel.find();
     if (!ambulances) throw Error("No items");
