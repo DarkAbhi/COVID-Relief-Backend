@@ -14,6 +14,7 @@ const oxygenRoutes = require("./routes/api/oxygen")
 const plasmaRoutes = require("./routes/api/plasma")
 const remdesivirRoutes = require("./routes/api/remdesivir")
 const teleCounsellingRoutes = require("./routes/api/tele")
+const registrationRoutes = require("./routes/api/register")
 
 // Form Routes
 const neravuRoutes = require("./routes/api/neravu")
@@ -29,6 +30,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
+    useCreateIndex: true
   })
   .then(() => console.log("MONGO DB CONNECTED!"))
   .catch((err) => console.error(err));
@@ -45,6 +47,8 @@ app.use("/api/oxygen", oxygenRoutes)
 app.use("/api/plasma", plasmaRoutes)
 app.use("/api/remdesivir", remdesivirRoutes)
 app.use("/api/tele", teleCounsellingRoutes)
+
+app.use("/api/register", registrationRoutes)
 
 app.use("/api/neravu", neravuRoutes)
 
