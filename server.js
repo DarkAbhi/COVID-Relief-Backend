@@ -2,7 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
 const { MONGO_URI } = require("./config")
-require('dotenv').config();
+//require('dotenv').config();
 // Routes
 const ambulanceRoutes = require("./routes/api/ambulance")
 const bedRoutes = require("./routes/api/bed")
