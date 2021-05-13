@@ -2,6 +2,9 @@ const express = require("express");
 
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const JWT_SECRET = process.env.JWT_SECRET
 
 // User Model
 const UserModel = require("../../models/UserModel");
@@ -9,6 +12,7 @@ const UserModel = require("../../models/UserModel");
 // @routes POST api/register
 // @desc POST user register
 router.post("/", async (req, res) => {
+    
   const { email, password: plainPassword } = req.body;
 
   if (!email || typeof email !== "string")
@@ -26,27 +30,30 @@ router.post("/", async (req, res) => {
   if (plainPassword.length < 8) {
     return res.status(200).json({
       status: "error",
-      error: "Password lenght should be more than 8 characters",
+      error: "Password length should be more than 8 characters",
     });
   }
 
-  const password = await bcrypt.hash(plainPassword, 10);
-  try {
-    const createUserResult = await UserModel.create({ email, password });
-    if (!createUserResult)
-      throw Error("An error occured while creating a user.");
-    res.status(200).json({ status: "ok", data: "User created" });
-  } catch (error) {
-    if (error.code === 11000)
-      res.status(200).json({
-        error: "Email ID already exists.",
-        status: "error",
-      });
-    else
-      res.status(400).json({
-        error: error,
-      });
+  const user = await UserModel.findOne({ email }).lean();
+
+  if (!user) {
+    return res.status(200).json({
+      status: "error",
+      error: "Invalid email-ID/password",
+    });
   }
+
+  if (await bcrypt.compare(plainPassword, user.password)) {
+    const token = jwt.sign({
+      id: user._id,
+    }, JWT_SECRET);
+    return res.status(200).json({ status: "ok", data: token });
+  }
+
+  res.status(400).json({
+    status: "error",
+    error: "Invalid email-ID/password",
+  });
 });
 
 module.exports = router;

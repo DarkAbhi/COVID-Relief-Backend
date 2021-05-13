@@ -1,7 +1,8 @@
 const express = require("express")
 const mongoose = require("mongoose")
+const cors = require("cors")
 const { MONGO_URI } = require("./config")
-
+require('dotenv').config();
 // Routes
 const ambulanceRoutes = require("./routes/api/ambulance")
 const bedRoutes = require("./routes/api/bed")
@@ -15,6 +16,7 @@ const plasmaRoutes = require("./routes/api/plasma")
 const remdesivirRoutes = require("./routes/api/remdesivir")
 const teleCounsellingRoutes = require("./routes/api/tele")
 const registrationRoutes = require("./routes/api/register")
+const loginRoutes = require("./routes/api/login")
 
 // Form Routes
 const neravuRoutes = require("./routes/api/neravu")
@@ -23,6 +25,8 @@ const app = express();
 
 // Body Parser Middleware
 app.use(express.urlencoded({ extended: true }))
+
+app.use(cors())
 
 // CONNECT TO MONGO
 mongoose
@@ -49,6 +53,7 @@ app.use("/api/remdesivir", remdesivirRoutes)
 app.use("/api/tele", teleCounsellingRoutes)
 
 app.use("/api/register", registrationRoutes)
+app.use("/api/login", loginRoutes)
 
 app.use("/api/neravu", neravuRoutes)
 
