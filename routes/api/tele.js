@@ -1,6 +1,9 @@
 const express = require("express");
+const cors = require("cors");
 
 const router = express.Router();
+
+router.use(cors());
 
 // Tele Counselling Service Model
 const TeleCounsellingModel = require("../../models/TeleCounsellingModel");

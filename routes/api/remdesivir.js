@@ -1,6 +1,9 @@
 const express = require("express");
+const cors = require("cors");
 
 const router = express.Router();
+
+router.use(cors());
 
 // Remdesivir Service Model
 const RemdesivirModel = require("../../models/RemdesivirModel");
