@@ -63,8 +63,8 @@ const PlasmaDonorsSchema = new Schema({
       required:true
   },
   verified: {
-    type: Boolean,
-    default: false,
+    type: String,
+    required:true
   },
   verified_by: {
     type: String,

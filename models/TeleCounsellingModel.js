@@ -46,8 +46,8 @@ const TeleCounsellingSchema = new Schema({
     default: ""
   },
   verified: {
-    type: Boolean,
-    default:false
+    type: String,
+    required:true
   },
   verified_by: {
     type: String,
