@@ -2,12 +2,11 @@ const express = require("express");
 const cors = require("cors");
 
 const router = express.Router();
+const { JWT_SECRET } = require("../../config");
 
 router.use(cors());
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
-const JWT_SECRET = process.env.JWT_SECRET
 
 // User Model
 const UserModel = require("../../models/UserModel");
@@ -15,7 +14,6 @@ const UserModel = require("../../models/UserModel");
 // @routes POST api/register
 // @desc POST user register
 router.post("/", async (req, res) => {
-    
   const { email, password: plainPassword } = req.body;
 
   if (!email || typeof email !== "string")
@@ -47,9 +45,13 @@ router.post("/", async (req, res) => {
   }
 
   if (await bcrypt.compare(plainPassword, user.password)) {
-    const token = jwt.sign({
-      id: user._id,
-    }, JWT_SECRET);
+    const token = jwt.sign(
+      {
+        id: user._id,
+      },
+      JWT_SECRET,
+      { expiresIn: "30d" }
+    );
     return res.status(200).json({ status: "ok", data: token });
   }
 
