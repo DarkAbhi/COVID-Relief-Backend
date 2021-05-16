@@ -13,8 +13,7 @@ const AmbulanceServiceModel = require("../../models/AmbulanceServiceModel");
 router.get("/", (req, res) => {
   var pageNo = parseInt(req.query.pageNo);
   var availability = req.query.availability;
-  var size;
-  if (req.query.pageNo != null) size = 10;
+  var size = parseInt(req.query.size);
   var query = {};
   if (pageNo < 0 || pageNo === 0) {
     return res.json({
