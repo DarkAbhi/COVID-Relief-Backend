@@ -10,14 +10,41 @@ const OxygenModel = require("../../models/OxygenModel");
 
 // @routes GET api/oxygen
 // @desc GET all Oxygen Service
-router.get("/", async (_req, res) => {
-  try {
-    const oxygens = await OxygenModel.find();
-    if (!oxygens) throw Error("No items");
-    res.status(200).json(oxygens);
-  } catch (error) {
-    res.status(400).json({ message: error });
+router.get("/", (req, res) => {
+  var pageNo = parseInt(req.query.pageNo);
+  var size;
+  if(req.query.pageNo != null) size = 10
+  var query = {};
+  if (pageNo < 0 || pageNo === 0) {
+    return res.json({
+      status: "error",
+      error: "Invalid page number, should start with 1",
+    });
   }
+  query.skip = size * (pageNo - 1);
+  query.limit = size;
+  // Find some documents
+  OxygenModel.countDocuments({}, function (err, totalCount) {
+    if (err) {
+      response = {
+        status: "error",
+        error: "Error fetching data",
+      };
+    }
+    OxygenModel.find({}, {}, query, function (err, data) {
+      // Mongo command to fetch all data from collection.
+      if (err) {
+        response = {
+          status: "error",
+          error: "Error fetching data",
+        };
+      } else {
+        var totalPages = Math.ceil(totalCount / size);
+        response = { status: "ok", data: data, pages: totalPages, size: data.length };
+      }
+      res.json(response);
+    });
+  });
 });
 
 // @routes POST api/oxygen
