@@ -21,12 +21,18 @@ router.post("/", async (req, res) => {
       error: "Access denied",
     });
 
-  const { email, password: plainPassword } = req.body;
+  const { email, password: plainPassword, name } = req.body;
 
   if (!email || typeof email !== "string")
     return res.status(200).json({
       status: "error",
       error: "Invalid Email-ID",
+    });
+
+  if (!name || typeof name !== "string")
+    return res.status(200).json({
+      status: "error",
+      error: "Invalid name",
     });
 
   if (!plainPassword || typeof plainPassword !== "string")
@@ -52,7 +58,7 @@ router.post("/", async (req, res) => {
       return res.status(200).json({ status: "error", data: "Session expired" });
     else {
       try {
-        const createUserResult = await UserModel.create({ email, password });
+        const createUserResult = await UserModel.create({ email, name, password });
         if (!createUserResult)
           throw Error("An error occured while creating a user.");
         res.status(200).json({ status: "ok", data: "User created" });
