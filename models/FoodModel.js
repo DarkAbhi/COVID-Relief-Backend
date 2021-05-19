@@ -6,6 +6,9 @@ const FoodSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  charges: {
+    type: String
+  },
   contact_email: {
     type: String,
   },
