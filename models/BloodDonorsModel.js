@@ -8,7 +8,6 @@ const BloodDonorsSchema = new Schema({
   },
   blood_group: {
     type: String,
-    required: true,
   },
   contact_email: {
     type: String,
@@ -56,7 +55,7 @@ const BloodDonorsSchema = new Schema({
   },
   verified: {
     type: String,
-    required:true
+    required: true,
   },
   verified_by: {
     type: String,
