@@ -13,7 +13,6 @@ const medicineRoutes = require("./routes/api/medicine");
 const onlineDocRoutes = require("./routes/api/onlinedoc");
 const oxygenRoutes = require("./routes/api/oxygen");
 const plasmaRoutes = require("./routes/api/plasma");
-const remdesivirRoutes = require("./routes/api/remdesivir");
 const teleCounsellingRoutes = require("./routes/api/tele");
 const registrationRoutes = require("./routes/api/register");
 const loginRoutes = require("./routes/api/login");
@@ -51,7 +50,6 @@ app.use("/api/medicine", medicineRoutes);
 app.use("/api/onlinedoc", onlineDocRoutes);
 app.use("/api/oxygen", oxygenRoutes);
 app.use("/api/plasma", plasmaRoutes);
-app.use("/api/remdesivir", remdesivirRoutes);
 app.use("/api/tele", teleCounsellingRoutes);
 
 app.use("/api/register", registrationRoutes);
