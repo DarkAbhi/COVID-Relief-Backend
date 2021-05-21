@@ -5,7 +5,6 @@ const { MONGO_URI } = require("./config");
 //require('dotenv').config();
 // Routes
 const ambulanceRoutes = require("./routes/api/ambulance");
-const bedRoutes = require("./routes/api/bed");
 const bloodDonorRoutes = require("./routes/api/blood");
 const foodRoutes = require("./routes/api/food");
 const homeTestingRoutes = require("./routes/api/hometesting");
@@ -42,7 +41,6 @@ mongoose
 
 // Routes
 app.use("/api/ambulance", ambulanceRoutes);
-app.use("/api/bed", bedRoutes);
 app.use("/api/blooddonor", bloodDonorRoutes);
 app.use("/api/food", foodRoutes);
 app.use("/api/hometesting", homeTestingRoutes);
