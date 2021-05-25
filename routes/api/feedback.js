@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
     const feedbackResult = await feedback.save();
     if (!feedbackResult)
       throw Error("An error occured while saving the Home Test Service.");
-    res.status(200).json(feedbackResult);
+    res.status(200).json({message: "Feedback submitted!"});
   } catch (error) {
     res.status(400).json({ message: error });
   }
