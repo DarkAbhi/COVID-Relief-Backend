@@ -18,6 +18,8 @@ const loginRoutes = require("./routes/api/login");
 
 const feedbackRoutes = require("./routes/api/feedback");
 
+const foodcatererRoutes = require("./routes/api/foodcaterer")
+
 // Form Routes
 const neravuRoutes = require("./routes/api/neravu");
 
@@ -54,6 +56,7 @@ app.use("/api/register", registrationRoutes);
 app.use("/api/login", loginRoutes);
 
 app.use("/api/feedback", feedbackRoutes);
+app.use("/api/foodcaterer", foodcatererRoutes)
 
 app.use("/api/neravu", neravuRoutes);
 
