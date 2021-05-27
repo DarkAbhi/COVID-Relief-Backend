@@ -20,6 +20,8 @@ const feedbackRoutes = require("./routes/api/feedback");
 
 const foodcatererRoutes = require("./routes/api/foodcaterer")
 
+const jakBangaloreRoutes = require("./routes/api/jakbangalore")
+
 // Form Routes
 const neravuRoutes = require("./routes/api/neravu");
 
@@ -57,6 +59,8 @@ app.use("/api/login", loginRoutes);
 
 app.use("/api/feedback", feedbackRoutes);
 app.use("/api/foodcaterer", foodcatererRoutes)
+
+app.use("/api/jakbangalore", jakBangaloreRoutes)
 
 app.use("/api/neravu", neravuRoutes);
 
