@@ -8,7 +8,6 @@ const ambulanceRoutes = require("./routes/api/ambulance");
 const bloodDonorRoutes = require("./routes/api/blood");
 const foodRoutes = require("./routes/api/food");
 const homeTestingRoutes = require("./routes/api/hometesting");
-const medicineRoutes = require("./routes/api/medicine");
 const onlineDocRoutes = require("./routes/api/onlinedoc");
 const oxygenRoutes = require("./routes/api/oxygen");
 const plasmaRoutes = require("./routes/api/plasma");
@@ -23,6 +22,8 @@ const foodcatererRoutes = require("./routes/api/foodcaterer")
 // Medicine tab routes
 const jakBangaloreRoutes = require("./routes/api/jakbangalore")
 const jakKarnatakaRoutes = require("./routes/api/jakkarnataka")
+const medicineOfflineRoutes = require("./routes/api/medicinebangalore")
+const medicineOnlineRoutes = require("./routes/api/medicineonline")
 
 const app = express();
 
@@ -47,7 +48,6 @@ app.use("/api/ambulance", ambulanceRoutes);
 app.use("/api/blooddonor", bloodDonorRoutes);
 app.use("/api/food", foodRoutes);
 app.use("/api/hometesting", homeTestingRoutes);
-app.use("/api/medicine", medicineRoutes);
 app.use("/api/onlinedoc", onlineDocRoutes);
 app.use("/api/oxygen", oxygenRoutes);
 app.use("/api/plasma", plasmaRoutes);
@@ -61,6 +61,8 @@ app.use("/api/foodcaterer", foodcatererRoutes)
 
 app.use("/api/jakbangalore", jakBangaloreRoutes)
 app.use("/api/jakkarnataka", jakKarnatakaRoutes)
+app.use("/api/medicineoffline", medicineOfflineRoutes)
+app.use("/api/medicineonline", medicineOnlineRoutes)
 
 // Listen to server
 app.listen(process.env.PORT || 11000, () => console.log("Server Started"));
