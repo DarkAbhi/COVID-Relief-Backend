@@ -20,10 +20,9 @@ const feedbackRoutes = require("./routes/api/feedback");
 
 const foodcatererRoutes = require("./routes/api/foodcaterer")
 
+// Medicine tab routes
 const jakBangaloreRoutes = require("./routes/api/jakbangalore")
-
-// Form Routes
-const neravuRoutes = require("./routes/api/neravu");
+const jakKarnatakaRoutes = require("./routes/api/jakkarnataka")
 
 const app = express();
 
@@ -61,8 +60,7 @@ app.use("/api/feedback", feedbackRoutes);
 app.use("/api/foodcaterer", foodcatererRoutes)
 
 app.use("/api/jakbangalore", jakBangaloreRoutes)
-
-app.use("/api/neravu", neravuRoutes);
+app.use("/api/jakkarnataka", jakKarnatakaRoutes)
 
 // Listen to server
 app.listen(process.env.PORT || 11000, () => console.log("Server Started"));
