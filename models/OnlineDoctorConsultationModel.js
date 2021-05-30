@@ -10,12 +10,10 @@ const OnlineDocSchema = new Schema({
     type: String,
   },
   contact_name: {
-    type: String,
-    required: true,
+    type: String
   },
   contact_number: {
-    type: String,
-    required: true,
+    type: String
   },
   description: {
     type: String,
@@ -47,8 +45,7 @@ const OnlineDocSchema = new Schema({
   },
   // This can be online or home
   type: {
-    type: String,
-    required: true,
+    type: String
   },
   verified: {
     type: String,
